@@ -129,6 +129,10 @@ function createApp(options = {}) {
 </html>`);
   });
 
+  app.get('/favicon.ico', (req, res) => {
+    res.status(204).end();
+  });
+
   app.post('/api/audit', async (req, res) => {
     const { url } = req.body || {};
     let timeout;

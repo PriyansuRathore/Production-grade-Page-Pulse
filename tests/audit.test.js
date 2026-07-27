@@ -209,5 +209,12 @@ describe('Page Pulse API', () => {
       expect(response.text).toContain('Built for Digital Heroes Training Task');
       expect(response.text).toContain('https://digitalheroesco.com');
     });
+
+    it('does not return an error for a browser favicon request', async () => {
+      const app = createApp();
+      const response = await request(app).get('/favicon.ico');
+
+      expect(response.status).toBe(204);
+    });
   });
 });
