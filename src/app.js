@@ -108,6 +108,27 @@ function createApp(options = {}) {
 
   app.use(rateLimiter);
 
+  app.get('/', (req, res) => {
+    res.type('html').send(`<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page Pulse</title>
+  </head>
+  <body>
+    <main>
+      <h1>Page Pulse</h1>
+      <p>Audit public URLs through the <code>POST /api/audit</code> endpoint.</p>
+      <p>Service status: <a href="/health">health check</a></p>
+    </main>
+    <footer>
+      <a href="https://digitalheroesco.com">Built for Digital Heroes Training Task</a>
+    </footer>
+  </body>
+</html>`);
+  });
+
   app.post('/api/audit', async (req, res) => {
     const { url } = req.body || {};
     let timeout;

@@ -198,4 +198,16 @@ describe('Page Pulse API', () => {
       expect(response.body.credit).toContain('Digital Heroes');
     });
   });
+
+  describe('/ landing page', () => {
+    it('renders the required public credit', async () => {
+      const app = createApp();
+      const response = await request(app).get('/');
+
+      expect(response.status).toBe(200);
+      expect(response.type).toBe('text/html');
+      expect(response.text).toContain('Built for Digital Heroes Training Task');
+      expect(response.text).toContain('https://digitalheroesco.com');
+    });
+  });
 });
